@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booked Slots</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary requests-nav py-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Back to Home</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Booked Appointment Slots</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Slot</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (bookings.length > 0) { %>
+                        <% bookings.forEach(function(booking) { %>
+                            <tr>
+                                <td><%= booking.booking_date %></td>
+                                <td><%= booking.slot %></td>
+                                <td><%= booking.name %></td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="3" class="text-center">No bookings found.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

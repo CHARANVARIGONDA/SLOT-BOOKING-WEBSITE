@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css" />
+
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="mb-4">Booking Form</h4>
+
+              <form id="bookingForm">
+                <!-- USER DETAILS -->
+                <div class="mb-3">
+                  <label for="name" class="form-label">Enter Name:</label>
+                  <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="phonenumber" class="form-label">Enter Mobile Number:</label>
+                  <input type="number" class="form-control" id="phonenumber" required>
+                </div>
+                <div class="mb-3">
+                  <label for="gender" class="form-label">Select Gender</label>
+                  <select class="form-select" id="gender">
+                    <option selected value="others">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- SLOT SELECTION -->
+                <h5 class="mb-3">Select Appointment Slot</h5>
+                <div class="mb-3">
+                  <label class="form-label">Select Date</label>
+                  <input type="date" id="date" class="form-control" required>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Available Slots</label>
+                  <div class="row g-3" id="slots">
+                    <div class="col-4"> <button type="button"
+                        class="btn btn-outline-success slot-btn w-100">9:30AM-10:30AM</button> </div>
+                    <div class="col-4"> <button type="button"
+                        class="btn btn-outline-success slot-btn w-100">11:00AM-12:00PM</button> </div>
+                    <div class="col-4"> <button type="button"
+                        class="btn btn-outline-success slot-btn w-100">12:30PM-1:30PM</button> </div>
+                    <div class="col-4"> <button type="button"
+                        class="btn btn-outline-success slot-btn w-100">3:30PM-4:30PM</button> </div>
+                    <div class="col-4"> <button type="button"
+                        class="btn btn-outline-success slot-btn w-100">5:00PM-6:00PM</button> </div>
+                    <div class="col-4"> <button type="button"
+                        class="btn btn-outline-success slot-btn w-100">6:30PM-7:30PM</button> </div>
+                  </div>
+                  <div id="slotError" class="text-danger mt-2" style="display:none;">Please select a slot.</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" id="bookBtn">Book Appointment</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="/Script.js"></script>
+</body>
+
+</html>

@@ -83,10 +83,88 @@ app.delete("/listings/:id",async(req,res)=>{
 //         country:"India",
 //     });
 
+ 
 //    await sampleListing.save();
 //    console.log("sample was saved");
 //    res.send("successful testing");
 // });
-app.listen(8080,() =>{
-    console.log("server is listening to port 8080");
+
+// pages
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
+app.get("/slot", (req, res) => {
+  res.render("Slot");
+});
+
+app.get("/book", (req, res) => {
+  res.render("Book");
+});
+app.get("/booked-slots", (req, res) => {
+  const { date } = req.query;
+
+  if (!date) {
+    return res.json([]);
+  }
+
+  const sql = "SELECT slot FROM bookings WHERE booking_date = ?";
+
+  db.query(sql, [date], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.json([]);
+    }
+
+    const bookedSlots = results.map(row => row.slot);
+    res.json(bookedSlots);
+  });
+});
+
+
+// booking API
+// booking API
+app.post("/book", (req, res) => {
+  const { date, slot, name, email, phone, gender } = req.body;
+
+  console.log("BODY:", req.body);
+
+  if (!date || !slot || !name || !email || !phone) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required",
+    });
+  }
+
+  const sql =
+    "INSERT INTO bookings (booking_date, slot, name, email, phone, gender) VALUES (?, ?, ?, ?, ?, ?)";
+
+  db.query(sql, [date, slot, name, email, phone, gender], (err) => {
+    if (err) {
+      console.error(err);
+      return res.json({
+        success: false,
+        message: "Already booked or error occurred",
+      });
+    }
+
+    res.json({ success: true });
+  });
+});
+
+app.get("/view-slots", (req, res) => {
+  const sql = "SELECT * FROM bookings ORDER BY booking_date DESC, slot ASC";
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.render("BookedSlots", { bookings: results });
+  });
+});
+
+app.get("/about", (req, res) => {
+  res.render("About");
+});
+
+// server
+app.listen(8080, () => {
+  console.log("Server is running");
 });
