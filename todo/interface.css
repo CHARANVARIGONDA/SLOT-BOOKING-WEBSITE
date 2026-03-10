@@ -1,0 +1,13 @@
+.main{
+    display: flex;
+    flex-direction: row;
+
+}
+.container{
+ 
+    padding-top:100px ;
+
+}
+.form-control{
+    width: 100%;
+}

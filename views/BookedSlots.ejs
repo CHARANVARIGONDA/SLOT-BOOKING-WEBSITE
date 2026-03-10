@@ -29,9 +29,9 @@
                     <% if (bookings.length > 0) { %>
                         <% bookings.forEach(function(booking) { %>
                             <tr>
-                                <td><%= booking.booking_date %></td>
+                                <td><%= new Date(booking.booking_date).toDateString() %></td>
                                 <td><%= booking.slot %></td>
-                                <td><%= booking.name %></td>
+                                <td><%= booking.name || '-' %></td>
                             </tr>
                         <% }); %>
                     <% } else { %>

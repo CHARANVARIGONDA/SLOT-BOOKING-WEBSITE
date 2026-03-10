@@ -80,6 +80,9 @@ if (bookingForm) {
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phonenumber").value;
     const gender = document.getElementById("gender").value;
+    const serviceSelect = document.getElementById("serviceType");
+    const servicePrice = serviceSelect.value;
+    const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
     const date = dateInput.value;
 
     // 3. Send Payload
@@ -95,7 +98,6 @@ if (bookingForm) {
       const data = await response.json();
 
       if (data.success) {
-        alert("Booking Successful! Redirecting to available slots...");
         // Reset form
         bookingForm.reset();
         selectedSlot = null;
@@ -104,8 +106,9 @@ if (bookingForm) {
           b.classList.add("btn-outline-success");
         });
 
-        // Redirect as requested
-        window.location.href = "/view-slots";
+        // Redirect to local payment gateway mock with query params
+        alert("Redirecting to secure Payment Gateway...");
+        window.location.href = `/payment?price=${servicePrice}&service=${encodeURIComponent(serviceName)}`;
       } else {
         alert("Error: " + data.message);
         // If collision, refresh slots
